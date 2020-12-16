@@ -34,7 +34,7 @@ async function downloadImages(params) {
             headless: false,
         });
 		const page = await browser.newPage();
-        // Load Cookies
+
         try {
             const cookiesString = await fs.readFile('cookies.json');
             await page.setCookie(...JSON.parse(cookiesString));
@@ -47,7 +47,7 @@ async function downloadImages(params) {
         });
 //         # Save cookies
         while (1) {
-            await delay(500);
+            await delay(300);
             if(!page.isClosed()) {
                 const cookies = await page.cookies();
                 await fs.writeFile('cookies.json', JSON.stringify(cookies, null, 2));
